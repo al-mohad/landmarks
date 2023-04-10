@@ -1,9 +1,9 @@
-//
-//  ContentView.swift
-//  Landmarks
-//
-//  Created by Muhammad Buhari on 06/04/2023.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+A view showing the list of landmarks.
+*/
 
 import SwiftUI
 

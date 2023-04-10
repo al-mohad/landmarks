@@ -1,14 +1,13 @@
-//
-//  FavoriteButton.swift
-//  Landmarks
-//
-//  Created by Muhammad Buhari on 10/04/2023.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+A button that acts as a favorites indicator.
+*/
 
 import SwiftUI
 
 struct FavoriteButton: View {
-
     @Binding var isSet: Bool
 
     var body: some View {

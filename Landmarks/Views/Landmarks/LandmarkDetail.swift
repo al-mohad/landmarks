@@ -1,16 +1,14 @@
-//
-//  LandmarkDetail.swift
-//  Landmarks
-//
-//  Created by Muhammad Buhari on 10/04/2023.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+A view showing the details for a landmark.
+*/
 
 import SwiftUI
 
 struct LandmarkDetail: View {
-
     @EnvironmentObject var modelData: ModelData
-
     var landmark: Landmark
 
     var landmarkIndex: Int {
@@ -19,27 +17,36 @@ struct LandmarkDetail: View {
 
     var body: some View {
         ScrollView {
-            MapView(coordinate: landmark.locationCoordinate).frame(height: 300)
-                .ignoresSafeArea(edges:.top)
+            MapView(coordinate: landmark.locationCoordinate)
+                .ignoresSafeArea(edges: .top)
+                .frame(height: 300)
 
             CircleImage(image: landmark.image)
                 .offset(y: -130)
                 .padding(.bottom, -130)
 
-            VStack (alignment: .leading) {
-                Text(landmark.name).font(.title)
+            VStack(alignment: .leading) {
                 HStack {
-                    Text(landmark.park).font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Text(landmark.state).font(.subheadline)
+                    Text(landmark.name)
+                        .font(.title)
+                    FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
                 }
+
+                HStack {
+                    Text(landmark.park)
+                    Spacer()
+                    Text(landmark.state)
+                }
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+
                 Divider()
+
                 Text("About \(landmark.name)")
                     .font(.title2)
                 Text(landmark.description)
-            }.padding()
-            Spacer()
+            }
+            .padding()
         }
         .navigationTitle(landmark.name)
         .navigationBarTitleDisplayMode(.inline)

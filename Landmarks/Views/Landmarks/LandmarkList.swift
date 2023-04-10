@@ -1,16 +1,14 @@
-//
-//  LandmarkList.swift
-//  Landmarks
-//
-//  Created by Muhammad Buhari on 10/04/2023.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+A view showing a list of landmarks.
+*/
 
 import SwiftUI
 
 struct LandmarkList: View {
-
     @EnvironmentObject var modelData: ModelData
-
     @State private var showFavoritesOnly = false
 
     var filteredLandmarks: [Landmark] {
@@ -20,41 +18,28 @@ struct LandmarkList: View {
     }
 
     var body: some View {
-
         NavigationView {
-
             List {
-
                 Toggle(isOn: $showFavoritesOnly) {
                     Text("Favorites only")
                 }
 
-                ForEach(filteredLandmarks) {
-
-                    landmark in
-
+                ForEach(filteredLandmarks) { landmark in
                     NavigationLink {
-
                         LandmarkDetail(landmark: landmark)
-
                     } label: {
-
                         LandmarkRow(landmark: landmark)
-
                     }
                 }
             }
+            .navigationTitle("Landmarks")
         }
-        .navigationTitle("Landmarks")
     }
 }
 
 struct LandmarkList_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(["iPhone SE (2nd generation)", "iPhone XS Max"], id: \.self) { deviceName in
-            LandmarkList()
-                .previewDevice(PreviewDevice(rawValue: deviceName))
-                .previewDisplayName(deviceName)
-        }
+        LandmarkList()
+            .environmentObject(ModelData())
     }
 }
